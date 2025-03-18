@@ -41,9 +41,9 @@ function ProfileButton({ user }) {
     const ulClassName = 'profile-dropdown' + (showMenu ? '' : ' hidden');
 
     return (
-        <>
-            <button onClick={toggleMenu}>
-                <FaUserCircle />
+        <div className="profile-button-container">
+            <button onClick={toggleMenu} className="profile-button">
+                <FaUserCircle size={32} style={{ color: '#7d7a85' }} />
             </button>
             <ul className={ulClassName} ref={ulRef}>
                 {user ? (
@@ -72,7 +72,7 @@ function ProfileButton({ user }) {
                     </>
                 )}
             </ul>
-        </>
+        </div>
     );
 }
 

@@ -47,6 +47,7 @@ const validateCreateSpot = [
     handleValidationErrors,
 ];
 
+//GET ALL SPOTS OWNED BY THE CURRENT USER
 router.get('/current', requireAuth, async (req, res) => {
     const spots = await Spot.findAll({
         attributes: [
@@ -95,7 +96,7 @@ router.get('/current', requireAuth, async (req, res) => {
     return res.json(spotsResponse);
 });
 
-// Get detail for a spot from an Id
+// GET DETAILS OF A SPOT FROM AN ID
 router.get('/:spotId', async (req, res) => {
     const { spotId } = req.params;
 
@@ -166,7 +167,7 @@ router.get('/:spotId', async (req, res) => {
     return res.status(200).json(result);
 });
 
-// Create a spot
+// CREATE A SPOT
 router.post('/', validateCreateSpot, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
@@ -211,6 +212,7 @@ router.post('/', validateCreateSpot, async (req, res) => {
     });
 });
 
+//GET ALL SPOTS
 router.get('/', async (req, res) => {
     const spots = await Spot.findAll({
         attributes: [
@@ -243,6 +245,7 @@ router.get('/', async (req, res) => {
                 attributes: ['stars'],
             },
         ],
+        group: ['Spot.id'],
     });
     const spotsResponse = spots.map(spot => {
         return {
@@ -375,7 +378,7 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
     });
 });
 
-// Get all reviews by the Spot's id
+// GET ALL REVIEWS BY A SPOT'S ID
 router.get('/:spotId/reviews', async (req, res) => {
     const spotId = req.params.spotId;
 
