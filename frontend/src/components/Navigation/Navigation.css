@@ -3,7 +3,8 @@
     justify-content: space-between;
     align-items: center;
     list-style: none;
-    padding: 0px 80px;
+    padding: 10px 40px;
+    border-bottom: 1.5px solid rgba(0, 0, 0, 0.1);
 }
 .home-logo {
     height: 40px;

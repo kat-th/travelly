@@ -1,16 +1,24 @@
 import { csrfFetch } from './csrf';
 
-// --------- Action Types ------------
+// ================== ACTION TYPES ==================
 const GET_ALL_SPOTS = 'spots/getAllSpots';
+const GET_A_SPOT = 'spots/getSpot';
 // const CREATE_SPOT = 'spots/createSpot';
 // const UPDATE_SPOT = 'spots/updateSpot';
 // const DELETE_SPOT = 'spots/deleteSpot';
 
-// --------- Action Creators ------------
+// ================== ACTION CREATOR ==================
 const getAllSpotsAction = spots => {
     return {
         type: GET_ALL_SPOTS,
         payload: spots,
+    };
+};
+
+const getSpotAction = spot => {
+    return {
+        type: GET_A_SPOT,
+        payload: spot,
     };
 };
 
@@ -35,7 +43,9 @@ const getAllSpotsAction = spots => {
 //     };
 // };
 
-// --------- Thunks ------------
+// ================== THUNKS ==================
+
+// Get all spots
 export const getAllSpots = () => async dispatch => {
     try {
         const response = await csrfFetch('/api/spots');
@@ -50,10 +60,26 @@ export const getAllSpots = () => async dispatch => {
     }
 };
 
-// --------- Reducers ------------
+// Get spot detail
+export const getSpotDetail = spotId => async dispatch => {
+    try {
+        const response = await csrfFetch('/api/spots/' + `${spotId}`);
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(getSpotAction(data));
+        } else {
+            throw response;
+        }
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+// ================== REDUCER ==================
 const initialState = {
     byId: {},
     allSpots: [],
+    spotDetail: [],
 };
 
 const spotReducer = (state = initialState, action) => {
@@ -75,7 +101,15 @@ const spotReducer = (state = initialState, action) => {
 
             return newState;
 
-        // case "CREATE_SPOT":
+        case GET_A_SPOT:
+            newState = { ...state };
+            let spot = action.payload;
+
+            newState.spotDetail = spot;
+            newState.byId = { ...newState.byId, [spot.id]: spot };
+
+            return newState;
+
         default:
             return state;
     }
