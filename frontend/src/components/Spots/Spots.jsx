@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllSpots } from '../../store/spots';
 import { useNavigate } from 'react-router-dom';
@@ -9,31 +9,34 @@ const SpotsList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [spots, setSpots] = useState([]);
+    // const [spots, setSpots] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
 
-    const spotsList = useSelector(state => state.spots.allSpots);
-    // console.log(spotsList);
+    const allSpots = useSelector(state => state.spots.allSpots);
+    // const spotsList =
+    //     useSelector(state => state.spots.allSpots.map(id => state.spots.byId[id])) || [];
+    console.log(allSpots, 'THIS IS THE SPOT LIST');
+    // const spotsState = useSelector(state => state.spots);
+    // console.log('Redux spots state:', spotsState);
+
     useEffect(() => {
         const getSpots = async () => {
             dispatch(getAllSpots());
             setIsLoaded(true);
         };
 
-        // setSpots(data);
-
         if (!isLoaded) {
             getSpots();
         }
-    }, [isLoaded, spots]);
+    }, [dispatch, allSpots, isLoaded]);
 
     return (
         <div className="spots-list p-6 font-sans">
-            {spotsList.length === 0 ? (
+            {allSpots.length === 0 ? (
                 <p>No spots available</p>
             ) : (
                 <div className="spots-container">
-                    {spotsList.map((spot, index) => (
+                    {allSpots.map((spot, index) => (
                         <div
                             key={index}
                             className="property-container"
