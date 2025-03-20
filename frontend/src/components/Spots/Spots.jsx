@@ -15,7 +15,7 @@ const SpotsList = () => {
     const allSpots = useSelector(state => state.spots.allSpots);
     // const spotsList =
     //     useSelector(state => state.spots.allSpots.map(id => state.spots.byId[id])) || [];
-    console.log(allSpots, 'THIS IS THE SPOT LIST');
+    // console.log(allSpots, 'THIS IS THE SPOT LIST');
     // const spotsState = useSelector(state => state.spots);
     // console.log('Redux spots state:', spotsState);
 

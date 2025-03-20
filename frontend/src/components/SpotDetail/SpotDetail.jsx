@@ -12,7 +12,7 @@ const SpotDetail = () => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     const spot = useSelector(state => state.spots.spotDetail);
-    console.log(spot, 'THIS IS THE SPOT');
+    // console.log(spot, 'THIS IS THE SPOT');
 
     // const spot = allSpots.find(spot => `${spot.id}` === spotId);
 
@@ -61,7 +61,7 @@ const SpotDetail = () => {
             <div className="spot-info-container">
                 <div className="spot-info-left">
                     <div className="location-info">
-                        <img src="../public/location.png" className="location-logo" />
+                        <img src="/location.png" className="location-logo" />
                         <span>
                             {spot.city}, {spot.state}
                         </span>
