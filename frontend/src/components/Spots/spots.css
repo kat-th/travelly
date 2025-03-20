@@ -15,6 +15,7 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 .property-img {
