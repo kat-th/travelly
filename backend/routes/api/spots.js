@@ -124,11 +124,6 @@ router.get('/:spotId', async (req, res) => {
         ],
     });
 
-    if (!spot)
-        return res.status(404).json({
-            message: "Spot couldn't be found",
-        });
-
     if (!spot) {
         return res.status(404).json({
             message: "Spot couldn't be found",
@@ -169,7 +164,19 @@ router.get('/:spotId', async (req, res) => {
 
 // CREATE A SPOT
 router.post('/', validateCreateSpot, async (req, res) => {
-    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const {
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price,
+        previewImage,
+        imageUrls,
+    } = req.body;
 
     const ownerId = req.user?.id || 1;
 
@@ -186,6 +193,28 @@ router.post('/', validateCreateSpot, async (req, res) => {
         ownerId,
     });
 
+    const spotId = newSpot.id;
+
+    // Create preview Image
+
+    const newSpotImage = await SpotImage.create({
+        spotId,
+        url: previewImage,
+        preview: true,
+    });
+
+    // Create additional images
+    if (imageUrls && imageUrls.length > 0) {
+        const imagePromises = imageUrls.map(url =>
+            SpotImage.create({
+                spotId,
+                url,
+                preview: false,
+            }),
+        );
+        await Promise.all(imagePromises);
+    }
+
     const formattedCreatedAt = new Date(newSpot.createdAt)
         .toISOString()
         .replace('T', ' ')
@@ -195,7 +224,7 @@ router.post('/', validateCreateSpot, async (req, res) => {
         .replace('T', ' ')
         .slice(0, 19);
 
-    res.status(201).json({
+    const result = {
         id: newSpot.id,
         ownerId: newSpot.ownerId,
         address: newSpot.address,
@@ -207,9 +236,13 @@ router.post('/', validateCreateSpot, async (req, res) => {
         name: newSpot.name,
         description: newSpot.description,
         price: newSpot.price,
+        previewImage: newSpotImage.url,
+        imageUrls: imageUrls || [],
         createdAt: formattedCreatedAt,
         updatedAt: formattedUpdatedAt,
-    });
+    };
+
+    return res.status(201).json(result);
 });
 
 //GET ALL SPOTS
@@ -356,6 +389,7 @@ router.post('/:spotId/reviews', requireAuth, validateCreateReview, async (req, r
     });
 });
 
+// DELETE A SPOT BASED ON SPOT'S ID
 router.delete('/:spotId', requireAuth, async (req, res) => {
     const { spotId } = req.params;
     const spotToDelete = await Spot.findByPk(spotId);
@@ -476,7 +510,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     });
 });
 
-// Create a booking for a spot based on the Spot's id
+// CREATE A BOOKING FOR A SPOT BASED ON SPOT ID
 router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     try {
         const spotId = parseInt(req.params.spotId);

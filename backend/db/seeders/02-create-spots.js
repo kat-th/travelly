@@ -20,7 +20,7 @@ module.exports = {
                     lat: 40.7128,
                     lng: -74.006,
                     name: 'Spot 1',
-                    description: 'This is a great spot!',
+                    description: 'Rustic modern Ascutney cabin with views',
                     price: 100,
                 },
                 {
@@ -32,7 +32,7 @@ module.exports = {
                     lat: 34.0522,
                     lng: -118.2437,
                     name: 'Spot 2',
-                    description: 'This is also a great spot!',
+                    description: 'Deer Valley Retreat, Lovely Log Cabin',
                     price: 130,
                 },
                 {
@@ -44,7 +44,7 @@ module.exports = {
                     lat: 10.7128,
                     lng: -60.006,
                     name: 'Spot 3',
-                    description: 'This MIGHT be the best spot!',
+                    description: 'The Lodge on Warner Hill',
                     price: 200,
                 },
             ],
