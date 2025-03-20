@@ -5,19 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import './spots.css';
 
-const SpotsList = () => {
+const ManageSpot = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     // const [spots, setSpots] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
-
-    const allSpots = useSelector(state => state.spots.allSpots);
-    // const spotsList =
-    //     useSelector(state => state.spots.allSpots.map(id => state.spots.byId[id])) || [];
-    // console.log(allSpots, 'THIS IS THE SPOT LIST');
-    // const spotsState = useSelector(state => state.spots);
-    // console.log('Redux spots state:', spotsState);
 
     useEffect(() => {
         const getSpots = async () => {
@@ -28,19 +21,39 @@ const SpotsList = () => {
         if (!isLoaded) {
             getSpots();
         }
-    }, [dispatch, allSpots, isLoaded]);
+    }, [dispatch, isLoaded]);
+
+    //Get the current user Id
+    const loggedInUser = useSelector(state => state.session.user.id);
+    const allSpots = useSelector(state => state.spots.allSpots);
+
+    if (!loggedInUser) {
+        return <p>Please log in to see your spots</p>;
+    }
+
+    const userSpots = Object.values(allSpots).filter(spot => spot.ownerId === loggedInUser);
+
+    const goToSpotDetail = (e, spot) => {
+        e.preventDefault();
+        navigate(`/spots/${spot.id}`);
+    };
+
+    const goToUpdateForm = (e, spot) => {
+        e.preventDefault();
+        navigate(`/spots/${spot.id}/edit`);
+    };
 
     return (
-        <div className="spots-list p-6 font-sans">
-            {allSpots.length === 0 ? (
+        <div>
+            {userSpots.length === 0 ? (
                 <p>No spots available</p>
             ) : (
                 <div className="spots-container">
-                    {allSpots.map((spot, index) => (
+                    {userSpots.map((spot, index) => (
                         <div
                             key={index}
                             className="property-container"
-                            onClick={() => navigate(`/spots/${spot.id}`)}
+                            // onClick={e => goToSpotDetail(e, spot)}
                             title={spot.name}
                         >
                             <div className="image-container">
@@ -75,6 +88,15 @@ const SpotsList = () => {
                                     <strong>${spot.price}</strong> <span>night</span>
                                 </p>
                             </div>
+                            <div className="buttons">
+                                <button
+                                    className="update-button"
+                                    onClick={e => goToUpdateForm(e, spot)}
+                                >
+                                    Update
+                                </button>
+                                <button className="delete-button">Delete</button>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -83,4 +105,4 @@ const SpotsList = () => {
     );
 };
 
-export default SpotsList;
+export default ManageSpot;
