@@ -1,0 +1,74 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 25rem;
+    max-width: 90vw;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.close-button {
+    position: absolute;
+    border-radius: 5px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+.stars-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+.star {
+    cursor: pointer;
+    color: lightgray;
+    transition: color 0.2s;
+}
+
+.star.filled {
+    color: gold;
+}
+
+.stars-label {
+    margin-left: 8px;
+    font-size: 15px;
+}
+
+.submit-button {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #e04e50;
+    color: white;
+    cursor: pointer;
+}

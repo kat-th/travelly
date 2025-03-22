@@ -88,11 +88,11 @@ const UpdateSpotPage = () => {
             previewImage,
         };
 
-        console.log(updatedSpot, 'THIS IS THE DATA TO BE DISPATCHED');
+        // console.log(updatedSpot, 'THIS IS THE DATA TO BE DISPATCHED');
 
         const update = await dispatch(updateSpot(spotId, updatedSpot));
 
-        console.log(update, 'THIS IS UPDATED DATA');
+        // console.log(update, 'THIS IS UPDATED DATA');
 
         if (update) {
             navigate(`/spots/${spotId}`);

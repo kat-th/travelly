@@ -1,20 +1,36 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSpotDetail } from '../../store/spots';
-import { useParams } from 'react-router-dom';
+import { getSpotReviews } from '../../store/reviews';
+import { useParams, useNavigate } from 'react-router-dom';
+import { FaStar } from 'react-icons/fa6';
+import ReviewFormModal from './ReviewFormModal';
+
 import './spot-detail.css';
 
 const SpotDetail = () => {
     const dispatch = useDispatch();
     // const navigate = useNavigate();
-    const { spotId } = useParams();
 
     const [isLoaded, setIsLoaded] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
+    const { spotId } = useParams();
+    const isLoggedIn = useSelector(state => state.session.user);
+    const spotReviews = useSelector(state => state.reviews.allReviews);
+
+    const loggedInUserId = isLoggedIn.id;
     const spot = useSelector(state => state.spots.spotDetail);
-    // console.log(spot, 'THIS IS THE SPOT');
+    const isOwner = loggedInUserId === spot.Owner?.id;
+    const hasUserReviewed = spotReviews.some(review => review.User.id === loggedInUserId);
+    const showReviewButton = isLoggedIn && !isOwner && !hasUserReviewed;
 
-    // const spot = allSpots.find(spot => `${spot.id}` === spotId);
+    const sortedReviews = [...spotReviews].sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+    );
+    const noReivews = sortedReviews.length === 0;
+
+    console.log(showReviewButton, 'THIS IS SHOW REVIEW BUTTON');
 
     useEffect(() => {
         const getSpot = async () => {
@@ -27,6 +43,24 @@ const SpotDetail = () => {
         }
     }, [dispatch, spotId, isLoaded]);
 
+    useEffect(() => {
+        const getReview = async () => {
+            dispatch(getSpotReviews(spotId));
+            setIsLoaded(true);
+        };
+
+        if (!isLoaded) {
+            getReview();
+        }
+    }, [dispatch, isLoaded]);
+
+    const formatDate = timestamp => {
+        const date = new Date(timestamp);
+        const month = date.toLocaleString('default', { month: 'long' });
+        const year = date.getFullYear();
+        return `${month} ${year}`;
+    };
+
     if (!spot) {
         return <div>No Spot Found</div>;
     }
@@ -38,7 +72,7 @@ const SpotDetail = () => {
 
     return (
         <div className="spot-container">
-            <h2>{spot.description}</h2>
+            <h2>{spot.name}</h2>
             <div className="spot-images">
                 {previewImage ? (
                     <div className="image-grid">
@@ -70,23 +104,55 @@ const SpotDetail = () => {
                         <p>Hosted by {spot.Owner?.firstName}</p>
                     </div>
                     <div className="spot-description">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                            occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                            mollit anim id est laborum.
-                        </p>
+                        <p>{spot.description}</p>
                     </div>
                 </div>
                 <div className="callout-box-right">
-                    <h4>${spot.price} night</h4>
+                    <div className="callout-info">
+                        <span className="callout-info-left">${spot.price} night</span>
+                        <span className="callout-info-right">
+                            <FaStar />
+                            {spot.avgStarRating} ‧ {spot.numReviews} reviews
+                        </span>
+                    </div>
                     <button className="reserve-button" onClick={() => alert('Feature coming soon')}>
                         Reserve
                     </button>
                 </div>
+            </div>
+
+            <div className="review-container">
+                <h2 className="review-container-header">
+                    <FaStar />
+                    {spot.avgStarRating ? parseFloat(spot.avgStarRating).toFixed(1) : 'New'}{' '}
+                    {spot.numReviews} reviews
+                </h2>
+                <div>
+                    {showReviewButton && (
+                        <button onClick={() => setShowModal(true)}>Post Your Review</button>
+                    )}
+
+                    {showModal && (
+                        <ReviewFormModal spotId={spotId} onClose={() => setShowModal(false)} />
+                    )}
+                </div>
+                {noReivews ? (
+                    isLoggedIn && !isOwner && <p>Be the first to post a review</p>
+                ) : (
+                    <ul>
+                        {sortedReviews.map((review, index) => (
+                            <div key={`${index}-${review.id}`} className="review-card">
+                                <div className="review-header">
+                                    <div className="review-user">{review.User.firstName}</div>
+                                    <div className="review-date">
+                                        {formatDate(review.createdAt)}
+                                    </div>
+                                </div>
+                                <div className="review-content">{review.review}</div>
+                            </div>
+                        ))}
+                    </ul>
+                )}
             </div>
         </div>
     );
