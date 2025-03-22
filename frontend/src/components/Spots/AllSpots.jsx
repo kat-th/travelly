@@ -9,9 +9,7 @@ const AllSpots = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // const [spots, setSpots] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
-
     const allSpots = useSelector(state => state.spots.allSpots);
     // const spotsList =
     //     useSelector(state => state.spots.allSpots.map(id => state.spots.byId[id])) || [];
