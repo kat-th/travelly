@@ -47,6 +47,7 @@ const validateCreateSpot = [
     handleValidationErrors,
 ];
 
+//GET ALL SPOTS OWNED BY THE CURRENT USER
 router.get('/current', requireAuth, async (req, res) => {
     const spots = await Spot.findAll({
         attributes: [
@@ -95,7 +96,7 @@ router.get('/current', requireAuth, async (req, res) => {
     return res.json(spotsResponse);
 });
 
-// Get detail for a spot from an Id
+// GET DETAILS OF A SPOT FROM AN ID
 router.get('/:spotId', async (req, res) => {
     const { spotId } = req.params;
 
@@ -122,11 +123,6 @@ router.get('/:spotId', async (req, res) => {
             },
         ],
     });
-
-    if (!spot)
-        return res.status(404).json({
-            message: "Spot couldn't be found",
-        });
 
     if (!spot) {
         return res.status(404).json({
@@ -166,9 +162,21 @@ router.get('/:spotId', async (req, res) => {
     return res.status(200).json(result);
 });
 
-// Create a spot
+// CREATE A SPOT
 router.post('/', validateCreateSpot, async (req, res) => {
-    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const {
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price,
+        previewImage,
+        imageUrls,
+    } = req.body;
 
     const ownerId = req.user?.id || 1;
 
@@ -185,6 +193,28 @@ router.post('/', validateCreateSpot, async (req, res) => {
         ownerId,
     });
 
+    const spotId = newSpot.id;
+
+    // Create preview Image
+
+    const newSpotImage = await SpotImage.create({
+        spotId,
+        url: previewImage,
+        preview: true,
+    });
+
+    // Create additional images
+    if (imageUrls && imageUrls.length > 0) {
+        const imagePromises = imageUrls.map(url =>
+            SpotImage.create({
+                spotId,
+                url,
+                preview: false,
+            }),
+        );
+        await Promise.all(imagePromises);
+    }
+
     const formattedCreatedAt = new Date(newSpot.createdAt)
         .toISOString()
         .replace('T', ' ')
@@ -194,7 +224,7 @@ router.post('/', validateCreateSpot, async (req, res) => {
         .replace('T', ' ')
         .slice(0, 19);
 
-    res.status(201).json({
+    const result = {
         id: newSpot.id,
         ownerId: newSpot.ownerId,
         address: newSpot.address,
@@ -206,11 +236,16 @@ router.post('/', validateCreateSpot, async (req, res) => {
         name: newSpot.name,
         description: newSpot.description,
         price: newSpot.price,
+        previewImage: newSpotImage.url,
+        imageUrls: imageUrls || [],
         createdAt: formattedCreatedAt,
         updatedAt: formattedUpdatedAt,
-    });
+    };
+
+    return res.status(201).json(result);
 });
 
+//GET ALL SPOTS
 router.get('/', async (req, res) => {
     const spots = await Spot.findAll({
         attributes: [
@@ -243,6 +278,7 @@ router.get('/', async (req, res) => {
                 attributes: ['stars'],
             },
         ],
+        group: ['Spot.id'],
     });
     const spotsResponse = spots.map(spot => {
         return {
@@ -342,17 +378,26 @@ router.post('/:spotId/reviews', requireAuth, validateCreateReview, async (req, r
         .replace('T', ' ')
         .slice(0, 19);
 
-    return res.status(201).json({
-        id: newReview.id,
-        userId: newReview.userId,
-        spotId: newReview.spotId,
-        review: newReview.review,
-        stars: newReview.stars,
-        createdAt: formattedCreatedAt,
-        updatedAt: formattedUpdatedAt,
+    const response = await Review.findOne({
+        where: {
+            id: newReview.id,
+        },
+        include: [
+            {
+                model: User,
+                attributes: ['id', 'firstName', 'lastName'],
+            },
+            {
+                model: ReviewImage,
+                attributes: ['id', 'url'],
+            },
+        ],
     });
+
+    return res.status(201).json(response);
 });
 
+// DELETE A SPOT BASED ON SPOT'S ID
 router.delete('/:spotId', requireAuth, async (req, res) => {
     const { spotId } = req.params;
     const spotToDelete = await Spot.findByPk(spotId);
@@ -375,7 +420,7 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
     });
 });
 
-// Get all reviews by the Spot's id
+// GET ALL REVIEWS BY A SPOT'S ID
 router.get('/:spotId/reviews', async (req, res) => {
     const spotId = req.params.spotId;
 
@@ -473,7 +518,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     });
 });
 
-// Create a booking for a spot based on the Spot's id
+// CREATE A BOOKING FOR A SPOT BASED ON SPOT ID
 router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     try {
         const spotId = parseInt(req.params.spotId);

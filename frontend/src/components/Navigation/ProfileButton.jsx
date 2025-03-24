@@ -5,6 +5,7 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import { NavLink } from 'react-router-dom';
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
@@ -41,21 +42,28 @@ function ProfileButton({ user }) {
     const ulClassName = 'profile-dropdown' + (showMenu ? '' : ' hidden');
 
     return (
-        <>
-            <button onClick={toggleMenu}>
-                <FaUserCircle />
+        <div className="profile-button-container">
+            <button onClick={toggleMenu} className="profile-button">
+                <FaUserCircle size={32} style={{ color: '#7d7a85' }} />
             </button>
             <ul className={ulClassName} ref={ulRef}>
                 {user ? (
                     <>
-                        <li>{user.username}</li>
-                        <li>
+                        <div className="user-name">Hello, {user.username}</div>
+                        {/* <li>
                             {user.firstName} {user.lastName}
-                        </li>
-                        <li>{user.email}</li>
-                        <li>
-                            <button onClick={logout}>Log Out</button>
-                        </li>
+                        </li> */}
+                        <div className="user-email">{user.email}</div>
+                        <div className="manage-spot-link">
+                            <NavLink to="/current" className="no-underline">
+                                Manage Spot
+                            </NavLink>
+                        </div>
+                        <div>
+                            <button className="logout-button" onClick={logout}>
+                                Log Out
+                            </button>
+                        </div>
                     </>
                 ) : (
                     <>
@@ -72,7 +80,7 @@ function ProfileButton({ user }) {
                     </>
                 )}
             </ul>
-        </>
+        </div>
     );
 }
 

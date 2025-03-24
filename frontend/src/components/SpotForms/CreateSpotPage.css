@@ -1,0 +1,26 @@
+.create-spot-container {
+    margin: auto 100px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.create-spot-container h2 {
+    text-align: center;
+}
+
+.location-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.spot-form input,
+.spot-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-top: 6px;
+}
