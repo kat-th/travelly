@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSpotDetail } from '../../store/spots';
-import { getSpotReviews } from '../../store/reviews';
+import { deleteReviewThunk, getSpotReviews } from '../../store/reviews';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa6';
 import ReviewFormModal from './ReviewFormModal';
-
-import './spot-detail.css';
+import './SpotDetail.css';
+import { DeleteReviewModal } from './DeleteReviewModal';
 
 const SpotDetail = () => {
     const dispatch = useDispatch();
@@ -14,26 +14,55 @@ const SpotDetail = () => {
 
     const [isLoaded, setIsLoaded] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [reviewToDelete, setReviewToDelete] = useState(null);
 
+    // get data from the state
     const { spotId } = useParams();
     const isLoggedIn = useSelector(state => state.session.user);
+    const spot = useSelector(state => state.spots.spotDetail);
     const spotReviews = useSelector(state => state.reviews.allReviews);
 
     const loggedInUserId = isLoggedIn.id;
-    const spot = useSelector(state => state.spots.spotDetail);
     const isOwner = loggedInUserId === spot.Owner?.id;
-    const hasUserReviewed = spotReviews.some(review => review.User.id === loggedInUserId);
+    const hasUserReviewed = spotReviews.some(review => review.userId === loggedInUserId);
     const showReviewButton = isLoggedIn && !isOwner && !hasUserReviewed;
 
     const sortedReviews = [...spotReviews].sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
     );
     const noReivews = sortedReviews.length === 0;
+    const reviewRatingCalc = reviews => {
+        if (reviews.length === 0) return 0;
+        const totalStars = reviews.reduce((acc, review) => acc + review.stars, 0);
+        return (totalStars / reviews.length).toFixed(1);
+    };
+    const reviewCount = spotReviews.length;
+    const averageRating = reviewRatingCalc(spotReviews);
 
-    console.log(showReviewButton, 'THIS IS SHOW REVIEW BUTTON');
+    const formatDate = timestamp => {
+        const date = new Date(timestamp);
+        const month = date.toLocaleString('default', { month: 'long' });
+        const year = date.getFullYear();
+        return `${month} ${year}`;
+    };
+
+    const handleDeleteClick = reviewId => {
+        setShowDeleteModal(true);
+        setReviewToDelete(reviewId);
+    };
+
+    const handleConfirmDelete = async () => {
+        // console.log(reviewToDelete, 'Confirming delete review for ID:');
+        await dispatch(deleteReviewThunk(reviewToDelete));
+        setShowDeleteModal(false);
+        setReviewToDelete(null);
+        setIsLoaded(!isLoaded);
+    };
 
     useEffect(() => {
         const getSpot = async () => {
+            // console.log(isLoaded, 'THIS IS ISLOADED FOR GET SPOTS');
             dispatch(getSpotDetail(spotId));
             setIsLoaded(true);
         };
@@ -45,6 +74,7 @@ const SpotDetail = () => {
 
     useEffect(() => {
         const getReview = async () => {
+            // console.log(isLoaded, 'THIS IS ISLOADED FOR GET REVIEWS');
             dispatch(getSpotReviews(spotId));
             setIsLoaded(true);
         };
@@ -52,14 +82,7 @@ const SpotDetail = () => {
         if (!isLoaded) {
             getReview();
         }
-    }, [dispatch, isLoaded]);
-
-    const formatDate = timestamp => {
-        const date = new Date(timestamp);
-        const month = date.toLocaleString('default', { month: 'long' });
-        const year = date.getFullYear();
-        return `${month} ${year}`;
-    };
+    }, [dispatch, spotReviews, isLoaded]);
 
     if (!spot) {
         return <div>No Spot Found</div>;
@@ -122,11 +145,10 @@ const SpotDetail = () => {
             </div>
 
             <div className="review-container">
-                <h2 className="review-container-header">
-                    <FaStar />
-                    {spot.avgStarRating ? parseFloat(spot.avgStarRating).toFixed(1) : 'New'}{' '}
-                    {spot.numReviews} reviews
-                </h2>
+                <h3 className="review-container-header">
+                    <FaStar /> {reviewCount ? parseFloat(averageRating).toFixed(1) : 'New'} ‧{' '}
+                    {reviewCount} reviews
+                </h3>
                 <div>
                     {showReviewButton && (
                         <button onClick={() => setShowModal(true)}>Post Your Review</button>
@@ -139,19 +161,33 @@ const SpotDetail = () => {
                 {noReivews ? (
                     isLoggedIn && !isOwner && <p>Be the first to post a review</p>
                 ) : (
-                    <ul>
+                    <div className="review-card">
                         {sortedReviews.map((review, index) => (
-                            <div key={`${index}-${review.id}`} className="review-card">
+                            <div key={`${index}-${review.id}`} className="review-content">
                                 <div className="review-header">
                                     <div className="review-user">{review.User.firstName}</div>
                                     <div className="review-date">
                                         {formatDate(review.createdAt)}
                                     </div>
                                 </div>
-                                <div className="review-content">{review.review}</div>
+                                <div className="review-text">{review.review}</div>
+                                {isLoggedIn && loggedInUserId === review.User.id && (
+                                    <button
+                                        onClick={() => handleDeleteClick(review.id)}
+                                        className="delete-review-button"
+                                    >
+                                        Delete
+                                    </button>
+                                )}
                             </div>
                         ))}
-                    </ul>
+                        {showDeleteModal && (
+                            <DeleteReviewModal
+                                onCancel={() => setShowDeleteModal(false)}
+                                onConfirm={handleConfirmDelete}
+                            />
+                        )}
+                    </div>
                 )}
             </div>
         </div>

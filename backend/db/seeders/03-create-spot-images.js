@@ -13,49 +13,49 @@ module.exports = {
             [
                 {
                     spotId: 1,
-                    url: 'https://picsum.photos/300/200',
+                    url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot1-01.png',
                     preview: true,
                 },
                 {
                     spotId: 1,
-                    url: 'https://picsum.photos/300/200',
+                    url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot1-02.png',
                     preview: false,
                 },
                 {
                     spotId: 1,
-                    url: 'https://picsum.photos/300/200',
+                    url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot1-03.png',
                     preview: false,
                 },
 
                 {
                     spotId: 2,
-                    url: 'https://picsum.photos/300/200',
+                    url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot2-01.png',
                     preview: true,
                 },
                 {
                     spotId: 2,
-                    url: 'https://picsum.photos/300/200',
+                    url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot2-02.png',
                     preview: false,
                 },
                 {
                     spotId: 2,
-                    url: 'https://picsum.photos/300/200',
+                    url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot2-03.png',
                     preview: false,
                 },
 
                 {
                     spotId: 3,
-                    url: 'https://picsum.photos/300/200',
+                    url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot3-01.png',
                     preview: true,
                 },
                 {
                     spotId: 3,
-                    url: 'https://picsum.photos/300/200',
+                    url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot3-02.png',
                     preview: false,
                 },
                 {
                     spotId: 3,
-                    url: 'https://picsum.photos/300/200',
+                    url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot3-03.png',
                     preview: false,
                 },
             ],

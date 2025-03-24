@@ -1,6 +1,6 @@
 .spot-container {
     margin: 10px 100px;
-    padding: 3px 40px;
+    padding: 5px 40px 50px;
     flex-direction: column;
     gap: 20px;
 }
@@ -87,6 +87,37 @@
 .reserve-button:hover {
     background-color: #e04e50;
 }
+
 .review-container {
     border-top: 1.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.review-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.review-content {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.review-date {
+    color: rgb(155, 153, 153);
+    font-size: 14px;
+}
+
+.review-user {
+    font-weight: 600;
+}
+
+.delete-review-button {
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: none;
+    width: 6rem;
+    background-color: grey;
+    color: white;
 }

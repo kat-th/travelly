@@ -49,15 +49,21 @@ function ProfileButton({ user }) {
             <ul className={ulClassName} ref={ulRef}>
                 {user ? (
                     <>
-                        <li>Hello, {user.username}</li>
-                        <li>
+                        <div className="user-name">Hello, {user.username}</div>
+                        {/* <li>
                             {user.firstName} {user.lastName}
-                        </li>
-                        <NavLink to="/current">Manage Spot</NavLink>
-                        <li>{user.email}</li>
-                        <li>
-                            <button onClick={logout}>Log Out</button>
-                        </li>
+                        </li> */}
+                        <div className="user-email">{user.email}</div>
+                        <div className="manage-spot-link">
+                            <NavLink to="/current" className="no-underline">
+                                Manage Spot
+                            </NavLink>
+                        </div>
+                        <div>
+                            <button className="logout-button" onClick={logout}>
+                                Log Out
+                            </button>
+                        </div>
                     </>
                 ) : (
                     <>

@@ -76,7 +76,7 @@ export const deleteReviewThunk = reviewId => async dispatch => {
             return reponse;
         }
 
-        dispatch(deleteReviewAction(data));
+        dispatch(deleteReviewAction(reviewId));
     } catch (error) {
         console.error(error);
     }
@@ -111,15 +111,15 @@ const reviewReducer = (state = initialState, action) => {
             newState = { ...state };
             let newReview = action.payload;
 
-            newState.reviewDetail = newReview;
+            newState.allReviews.push(newReview);
             newState.byId = { ...newState.byId, [newReview.id]: newReview };
 
             return newState;
 
         case DELETE_REVIEW:
             newState = { ...state };
-            delete newState.reviewDetail;
-            delete newState.byId[action.payload.reviewId];
+            delete newState.allReviews[action.payload.id];
+            delete newState.byId[action.payload.id];
 
             return newState;
 

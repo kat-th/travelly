@@ -378,15 +378,23 @@ router.post('/:spotId/reviews', requireAuth, validateCreateReview, async (req, r
         .replace('T', ' ')
         .slice(0, 19);
 
-    return res.status(201).json({
-        id: newReview.id,
-        userId: newReview.userId,
-        spotId: newReview.spotId,
-        review: newReview.review,
-        stars: newReview.stars,
-        createdAt: formattedCreatedAt,
-        updatedAt: formattedUpdatedAt,
+    const response = await Review.findOne({
+        where: {
+            id: newReview.id,
+        },
+        include: [
+            {
+                model: User,
+                attributes: ['id', 'firstName', 'lastName'],
+            },
+            {
+                model: ReviewImage,
+                attributes: ['id', 'url'],
+            },
+        ],
     });
+
+    return res.status(201).json(response);
 });
 
 // DELETE A SPOT BASED ON SPOT'S ID
