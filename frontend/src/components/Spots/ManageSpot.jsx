@@ -3,34 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllSpots } from '../../store/spots';
 import { useNavigate } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
+import { deleteSpotThunk } from '../../store/spots';
+import DeleteSpotModal from './DeleteSpotModal';
 import './spots.css';
 
 const ManageSpot = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // const [spots, setSpots] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
-
-    useEffect(() => {
-        const getSpots = async () => {
-            dispatch(getAllSpots());
-            setIsLoaded(true);
-        };
-
-        if (!isLoaded) {
-            getSpots();
-        }
-    }, [dispatch, isLoaded]);
-
+    const [showModal, setShowModal] = useState(false);
+    const [spotToDelete, setSpotToDelete] = useState(null);
     //Get the current user Id
-    const loggedInUser = useSelector(state => state.session.user.id);
+    const loggedInUser = useSelector(state => state.session.user?.id);
     const allSpots = useSelector(state => state.spots.allSpots);
-
-    if (!loggedInUser) {
-        return <p>Please log in to see your spots</p>;
-    }
-
     const userSpots = Object.values(allSpots).filter(spot => spot.ownerId === loggedInUser);
 
     const goToSpotDetail = (e, spot) => {
@@ -43,6 +29,33 @@ const ManageSpot = () => {
         navigate(`/spots/${spot.id}/edit`);
     };
 
+    const handleDeleteClick = spotId => {
+        setSpotToDelete(spotId);
+        setShowModal(true);
+    };
+
+    const confirmDelete = async () => {
+        await dispatch(deleteSpotThunk(spotToDelete));
+        setShowModal(false);
+        setSpotToDelete(null);
+        setIsLoaded(!isLoaded);
+    };
+
+    useEffect(() => {
+        const getSpots = async () => {
+            dispatch(getAllSpots());
+            setIsLoaded(true);
+        };
+
+        if (!isLoaded) {
+            getSpots();
+        }
+    }, [dispatch, userSpots, isLoaded]);
+
+    if (!loggedInUser) {
+        return <p>Please log in to see your spots</p>;
+    }
+
     return (
         <div>
             {userSpots.length === 0 ? (
@@ -51,7 +64,7 @@ const ManageSpot = () => {
                 <div className="spots-container">
                     {userSpots.map((spot, index) => (
                         <div
-                            key={index}
+                            key={spot.id}
                             className="property-container"
                             // onClick={e => goToSpotDetail(e, spot)}
                             title={spot.name}
@@ -95,10 +108,21 @@ const ManageSpot = () => {
                                 >
                                     Update
                                 </button>
-                                <button className="delete-button">Delete</button>
+                                <button
+                                    onClick={() => handleDeleteClick(spot.id)}
+                                    className="delete-button"
+                                >
+                                    Delete
+                                </button>
                             </div>
                         </div>
                     ))}
+                    {showModal && (
+                        <DeleteSpotModal
+                            onCancel={() => setShowModal(false)}
+                            onConfirm={confirmDelete}
+                        />
+                    )}
                 </div>
             )}
         </div>

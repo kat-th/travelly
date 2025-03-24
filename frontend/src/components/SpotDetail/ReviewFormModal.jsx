@@ -11,6 +11,7 @@ const ReviewFormModal = ({ spotId, onClose }) => {
     const [stars, setStars] = useState(0);
     const [errors, setErrors] = useState([]);
     const [hoveredStar, setHoveredStar] = useState(0);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -22,8 +23,8 @@ const ReviewFormModal = ({ spotId, onClose }) => {
         };
 
         const createReview = await dispatch(createReviewThunk(spotId, newReview));
-
-        console.log(createReview);
+        setIsLoaded(!isLoaded);
+        // console.log(createReview);
         onClose();
     };
 
