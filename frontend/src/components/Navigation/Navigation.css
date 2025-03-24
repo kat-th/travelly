@@ -44,6 +44,7 @@
     white-space: nowrap;
     font-size: 15px;
     color: rgb(95, 91, 91);
+    list-style: none;
 }
 
 .profile-dropdown.hidden {

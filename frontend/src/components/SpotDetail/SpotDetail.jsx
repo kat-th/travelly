@@ -23,7 +23,7 @@ const SpotDetail = () => {
     const spot = useSelector(state => state.spots.spotDetail);
     const spotReviews = useSelector(state => state.reviews.allReviews);
 
-    const loggedInUserId = isLoggedIn.id;
+    const loggedInUserId = isLoggedIn?.id;
     const isOwner = loggedInUserId === spot.Owner?.id;
     const hasUserReviewed = spotReviews.some(review => review.userId === loggedInUserId);
     const showReviewButton = isLoggedIn && !isOwner && !hasUserReviewed;
