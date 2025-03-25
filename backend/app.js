@@ -43,6 +43,16 @@ app.use(
 const routes = require('./routes');
 app.use(routes);
 
+const path = require('path');
+
+// Serve static files from the React app (Vite build)
+app.use(express.static(path.resolve(__dirname, 'dist')));
+
+// Serve index.html for any route not handled by your API
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+});
+
 // Catch unhandled requests and forward to error handler.
 app.use((_req, _res, next) => {
     const err = new Error("The requested resource couldn't be found.");
@@ -77,8 +87,7 @@ app.use((err, _req, res, _next) => {
         errorResponse.title = err.title || 'Server Error';
         errorResponse.stack = isProduction ? null : err.stack;
     }
-    res.status(statusCode).json(errorResponse)
+    res.status(statusCode).json(errorResponse);
 });
-
 
 module.exports = app;
