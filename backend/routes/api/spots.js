@@ -262,23 +262,26 @@ router.get('/', async (req, res) => {
             'price',
             'createdAt',
             'updatedAt',
-            [sequelize.col('SpotImage.url'), 'previewImage'],
-            [sequelize.fn('AVG', sequelize.col('stars')), 'avgRating'],
+            [sequelize.col('SpotImages.url'), 'previewImage'],
+            [sequelize.fn('AVG', sequelize.col('Reviews.stars')), 'avgRating'],
         ],
         include: [
             {
                 model: SpotImage,
+                as: 'SpotImages',
                 attributes: ['url'],
                 where: {
                     preview: true,
                 },
+                required: false,
             },
             {
                 model: Review,
+                as: 'Reviews',
                 attributes: ['stars'],
             },
         ],
-        group: ['Spot.id'],
+        group: ['Spot.id', 'SpotImages.id'],
     });
     const spotsResponse = spots.map(spot => {
         return {
