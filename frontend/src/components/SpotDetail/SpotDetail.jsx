@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSpotDetail } from '../../store/spots';
 import { deleteReviewThunk, getSpotReviews } from '../../store/reviews';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa6';
 import ReviewFormModal from './ReviewFormModal';
 import './SpotDetail.css';
@@ -82,7 +82,7 @@ const SpotDetail = () => {
         if (!isLoaded) {
             getReview();
         }
-    }, [dispatch, spotReviews, isLoaded]);
+    }, [dispatch, spotReviews, isLoaded, spotId]);
 
     if (!spot) {
         return <div>No Spot Found</div>;

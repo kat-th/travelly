@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createReviewThunk } from '../../store/reviews';
@@ -22,7 +21,7 @@ const ReviewFormModal = ({ spotId, onClose }) => {
             stars,
         };
 
-        const createReview = await dispatch(createReviewThunk(spotId, newReview));
+        await dispatch(createReviewThunk(spotId, newReview));
         setIsLoaded(!isLoaded);
         // console.log(createReview);
         onClose();

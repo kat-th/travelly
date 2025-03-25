@@ -1,4 +1,3 @@
-import React from 'react';
 import './DeleteSpotModal.css';
 
 const DeleteSpotModal = ({ onCancel, onConfirm }) => {

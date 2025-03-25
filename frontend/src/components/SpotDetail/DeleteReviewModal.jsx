@@ -1,4 +1,3 @@
-import React from 'react';
 import '../Spots/DeleteSpotModal.css';
 
 export const DeleteReviewModal = ({ onCancel, onConfirm }) => {
