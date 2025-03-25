@@ -88,7 +88,7 @@ const CreateSpotPage = () => {
             <h2>Create a new Spot</h2>
             <div className="spot-form">
                 <section className="location-section">
-                    <h3>Where's your place located?</h3>
+                    <h3>Where&apos;s your place located?</h3>
                     <p>Guest will only get your exact address once they booked a reservation</p>
                     <label>
                         Country {''}

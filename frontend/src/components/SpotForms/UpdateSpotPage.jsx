@@ -106,7 +106,7 @@ const UpdateSpotPage = () => {
             <h1>Update your Spot</h1>
 
             <section className="location-section">
-                <h2>Where's your place located?</h2>
+                <h2>Where&apos;s your place located?</h2>
                 <p>Guest will only get your exact address once they booked a reservation</p>
                 <label>
                     Country

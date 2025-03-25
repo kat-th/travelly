@@ -145,13 +145,13 @@ const spotReducer = (state = initialState, action) => {
     let newState;
 
     switch (action.type) {
-        case GET_ALL_SPOTS:
+        case GET_ALL_SPOTS: {
             newState = { ...state };
             let spots = action.payload;
             //Update new state
             newState.allSpots = spots;
 
-            const newById = { ...newState.byId };
+            let newById = { ...newState.byId };
             for (let spot of spots) {
                 newById[spot.id] = spot;
             }
@@ -159,8 +159,8 @@ const spotReducer = (state = initialState, action) => {
             newState.byId = newById;
 
             return newState;
-
-        case GET_A_SPOT:
+        }
+        case GET_A_SPOT: {
             newState = { ...state };
             let spot = action.payload;
 
@@ -168,8 +168,8 @@ const spotReducer = (state = initialState, action) => {
             newState.byId = { ...newState.byId, [spot.id]: spot };
 
             return newState;
-
-        case CREATE_SPOT:
+        }
+        case CREATE_SPOT: {
             newState = { ...state };
             let newSpot = action.payload;
 
@@ -177,8 +177,8 @@ const spotReducer = (state = initialState, action) => {
             newState.byId = { ...newState.byId, [newSpot.id]: newSpot };
 
             return newState;
-
-        case UPDATE_SPOT:
+        }
+        case UPDATE_SPOT: {
             newState = { ...state };
             let spotToUpdate = action.payload;
 
@@ -186,15 +186,15 @@ const spotReducer = (state = initialState, action) => {
             newState.byId = { ...newState.byId, [spotToUpdate.id]: spotToUpdate };
 
             return newState;
-
-        case DELETE_SPOT:
+        }
+        case DELETE_SPOT: {
             newState = { ...state };
             delete newState.spotDetail[action.payload.spotId];
             delete newState.allSpots[action.payload.spotId];
             delete newState.byId[action.payload.spotId];
 
             return newState;
-
+        }
         default:
             return state;
     }

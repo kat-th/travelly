@@ -64,9 +64,9 @@ const ManageSpot = () => {
                 <div className="spots-container">
                     {userSpots.map((spot, index) => (
                         <div
-                            key={spot.id}
+                            key={`${index}-${spot.id}`}
                             className="property-container"
-                            // onClick={e => goToSpotDetail(e, spot)}
+                            onClick={e => goToSpotDetail(e, spot)}
                             title={spot.name}
                         >
                             <div className="image-container">

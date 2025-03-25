@@ -16,6 +16,13 @@ const ReviewFormModal = ({ spotId, onClose }) => {
         e.preventDefault();
         setErrors([]);
 
+        const validationErrors = {};
+        if (review.length < 10) validationErrors.review = 'Review needs 10 characters or more';
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
         const newReview = {
             review,
             stars,
@@ -44,6 +51,7 @@ const ReviewFormModal = ({ spotId, onClose }) => {
                         onChange={e => setReview(e.target.value)}
                         rows={10}
                     />
+                    {errors.review && <p>{errors.review}</p>}
                     <div className="stars-input">
                         {[1, 2, 3, 4, 5].map(star => {
                             const isFilled = star <= (hoveredStar || stars);

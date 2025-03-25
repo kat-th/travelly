@@ -92,7 +92,7 @@ const reviewReducer = (state = initialState, action) => {
     let newState;
 
     switch (action.type) {
-        case GET_SPOT_REVIEWS:
+        case GET_SPOT_REVIEWS: {
             newState = { ...state };
             let reviews = action.payload.Reviews;
             //Update new state
@@ -106,8 +106,8 @@ const reviewReducer = (state = initialState, action) => {
             newState.byId = newById;
 
             return newState;
-
-        case CREATE_REVIEW:
+        }
+        case CREATE_REVIEW: {
             newState = { ...state };
             let newReview = action.payload;
 
@@ -115,14 +115,14 @@ const reviewReducer = (state = initialState, action) => {
             newState.byId = { ...newState.byId, [newReview.id]: newReview };
 
             return newState;
-
-        case DELETE_REVIEW:
+        }
+        case DELETE_REVIEW: {
             newState = { ...state };
             delete newState.allReviews[action.payload.id];
             delete newState.byId[action.payload.id];
 
             return newState;
-
+        }
         default:
             return state;
     }
