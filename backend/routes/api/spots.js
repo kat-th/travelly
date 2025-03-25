@@ -262,7 +262,7 @@ router.get('/', async (req, res) => {
             'price',
             'createdAt',
             'updatedAt',
-            [sequelize.fn('MAX', sequelize.col('url')), 'previewImage'],
+            [sequelize.col('SpotImage.url'), 'previewImage'],
             [sequelize.fn('AVG', sequelize.col('stars')), 'avgRating'],
         ],
         include: [

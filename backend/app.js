@@ -43,15 +43,15 @@ app.use(
 const routes = require('./routes');
 app.use(routes);
 
-const path = require('path');
+// const path = require('path');
 
-// Serve static files from the React app (Vite build)
-app.use(express.static(path.resolve(__dirname, '../frontend/dist')));
+// // Serve static files from the React app (Vite build)
+// app.use(express.static(path.resolve(__dirname, '../frontend/dist')));
 
-// Serve index.html for any route not handled by your API
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../frontend/dist', 'index.html'));
-});
+// // Serve index.html for any route not handled by your API
+// app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../frontend/dist', 'index.html'));
+// });
 
 // Catch unhandled requests and forward to error handler.
 app.use((_req, _res, next) => {
