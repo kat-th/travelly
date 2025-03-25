@@ -278,7 +278,7 @@ router.get('/', async (req, res) => {
             {
                 model: Review,
                 as: 'Reviews',
-                attributes: ['stars'],
+                attributes: [],
             },
         ],
         group: ['Spot.id', 'SpotImages.id'],
