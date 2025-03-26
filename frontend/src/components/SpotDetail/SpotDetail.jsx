@@ -146,7 +146,8 @@ const SpotDetail = () => {
 
             <div className="review-container">
                 <h3 className="review-container-header">
-                    <FaStar /> {reviewCount ? parseFloat(averageRating).toFixed(1) : 'New'} ‧{' '}
+                    <FaStar /> {reviewCount ? Number(averageRating).toFixed(1) : 'New'} ‧{' '}
+                    {console.log(typeof averageRating, averageRating, 'AVERAGE RATING TYPEOF')}
                     {reviewCount} reviews
                 </h3>
                 <div>
