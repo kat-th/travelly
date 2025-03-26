@@ -132,22 +132,28 @@ const SpotDetail = () => {
                 </div>
                 <div className="callout-box-right">
                     <div className="callout-info">
-                        <span className="callout-info-left">${spot.price} night</span>
-                        <span className="callout-info-right">
-                            <FaStar />
-                            {spot.avgStarRating} ‧ {spot.numReviews} reviews
-                        </span>
+                        <div className="callout-info-left">
+                            <span className="price">${spot.price}</span> night
+                        </div>
+                        <div className="callout-info-right">
+                            <FaStar size={12} /> {averageRating} ‧ {reviewCount} reviews
+                        </div>
                     </div>
-                    <button className="reserve-button" onClick={() => alert('Feature coming soon')}>
-                        Reserve
-                    </button>
+                    <div>
+                        <button
+                            className="reserve-button"
+                            onClick={() => alert('Feature coming soon')}
+                        >
+                            Reserve
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <div className="review-container">
                 <h3 className="review-container-header">
                     <FaStar /> {reviewCount ? averageRating : 'New'} ‧{' '}
-                    {console.log(typeof averageRating, averageRating, 'AVERAGE RATING TYPEOF')}
+                    {/* {console.log(typeof averageRating, averageRating, 'AVERAGE RATING TYPEOF')} */}
                     {reviewCount} reviews
                 </h3>
                 <div>
