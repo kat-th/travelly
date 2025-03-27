@@ -104,13 +104,19 @@ const ManageSpot = () => {
                             <div className="buttons">
                                 <button
                                     className="update-button"
-                                    onClick={e => goToUpdateForm(e, spot)}
+                                    onClick={e => {
+                                        e.stopPropagation();
+                                        goToUpdateForm(e, spot);
+                                    }}
                                 >
                                     Update
                                 </button>
                                 <button
-                                    onClick={() => handleDeleteClick(spot.id)}
                                     className="delete-button"
+                                    onClick={e => {
+                                        e.stopPropagation();
+                                        handleDeleteClick(spot.id);
+                                    }}
                                 >
                                     Delete
                                 </button>
