@@ -133,7 +133,7 @@ const SpotDetail = () => {
                 <div className="callout-box-right">
                     <div className="callout-info">
                         <div className="callout-info-left">
-                            <span className="price">${spot.price}</span> night
+                            <span className="price-info">${spot.price}</span> night
                         </div>
                         <div className="callout-info-right">
                             <FaStar size={12} /> {averageRating} ‧ {reviewCount} reviews

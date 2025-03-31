@@ -26,7 +26,16 @@ module.exports = {
                     url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot1-03.png',
                     preview: false,
                 },
-
+                {
+                    spotId: 1,
+                    url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot1-04.png',
+                    preview: false,
+                },
+                {
+                    spotId: 1,
+                    url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot1-05.png',
+                    preview: false,
+                },
                 {
                     spotId: 2,
                     url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot2-01.png',
@@ -42,7 +51,16 @@ module.exports = {
                     url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot2-03.png',
                     preview: false,
                 },
-
+                {
+                    spotId: 2,
+                    url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot2-04.png',
+                    preview: false,
+                },
+                {
+                    spotId: 2,
+                    url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot2-05.png',
+                    preview: false,
+                },
                 {
                     spotId: 3,
                     url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot3-01.png',
@@ -56,6 +74,16 @@ module.exports = {
                 {
                     spotId: 3,
                     url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot3-03.png',
+                    preview: false,
+                },
+                {
+                    spotId: 3,
+                    url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot3-04.png',
+                    preview: false,
+                },
+                {
+                    spotId: 3,
+                    url: 'https://travelly-images.s3.us-east-2.amazonaws.com/spot3-05.png',
                     preview: false,
                 },
             ],

@@ -28,29 +28,33 @@ function LoginFormModal() {
 
     return (
         <>
-            <h1>Log In</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Username or Email
-                    <input
-                        type="text"
-                        value={credential}
-                        onChange={e => setCredential(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Password
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        required
-                    />
-                </label>
-                {errors.credential && <p>{errors.credential}</p>}
-                <button type="submit">Log In</button>
-            </form>
+            <div className="modal-content">
+                <h1>Log In</h1>
+                <form className="modal-input" onSubmit={handleSubmit}>
+                    <label>
+                        <input
+                            type="text"
+                            value={credential}
+                            onChange={e => setCredential(e.target.value)}
+                            required
+                            placeholder="Username or Email"
+                        />
+                    </label>
+                    <label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                            required
+                            placeholder="Password"
+                        />
+                    </label>
+                    {errors.credential && <p>{errors.credential}</p>}
+                    <button className="login-button" type="submit">
+                        Log In
+                    </button>
+                </form>
+            </div>
         </>
     );
 }

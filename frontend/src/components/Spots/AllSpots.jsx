@@ -64,15 +64,19 @@ const AllSpots = () => {
                             </div>
                             <div className="property-details">
                                 <div className="property-top-row">
-                                    <span className="city-state">
+                                    <div className="city-state">
                                         {spot.city}, {spot.state}
-                                    </span>
-                                    <span className="star-rating">
-                                        {spot.avgRating
-                                            ? parseFloat(spot.avgRating).toFixed(1)
-                                            : 'New'}{' '}
-                                        <FaStar />
-                                    </span>
+                                    </div>
+                                    <div className="star-rating">
+                                        <span>
+                                            <FaStar />
+                                        </span>
+                                        <span>
+                                            {spot.avgRating
+                                                ? parseFloat(spot.avgRating).toFixed(1)
+                                                : 'New'}{' '}
+                                        </span>
+                                    </div>
                                 </div>
                                 <p className="price">
                                     <strong>${spot.price}</strong> <span>night</span>

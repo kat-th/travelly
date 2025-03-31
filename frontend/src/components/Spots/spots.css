@@ -48,8 +48,9 @@ body {
 
 .property-top-row {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    /* align-items: center; */
     overflow: hidden;
 }
 
@@ -59,7 +60,14 @@ body {
 }
 
 .star-rating {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
     text-align: right;
+}
+
+.price {
+    margin-top: 10px;
 }
 
 .buttons {
