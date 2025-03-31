@@ -1,26 +1,85 @@
 .create-spot-container {
-    margin: auto 100px;
+    /* margin: auto 100px;
     padding: 0 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 20px; */
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.spot-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.spot-form label {
+    font-weight: bold;
+}
+
+.spot-form section {
+    margin-bottom: 5px;
 }
 
 .create-spot-container h2 {
     text-align: center;
 }
 
-.location-section {
+.city-state,
+.lat-lng {
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.input-box-city {
+    flex: 2;
+    min-width: 290px;
+    flex: 1;
+}
+
+.input-box-lat {
+    flex: 1;
+    min-width: 185px;
+}
+
+.input-box-lng {
+    flex: 1;
+    min-width: 185px;
+}
+
+.price-input {
+    display: flex;
+    align-items: center;
     gap: 10px;
 }
 
-.spot-form input,
-.spot-form textarea {
+.spot-form input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 14px;
     margin-top: 6px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.spot-form textarea {
+    padding: 10px;
+    height: 170px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.create-spot-button {
+    padding: 10px 8px;
+    margin-top: 15px;
+    border-radius: 6px;
+    border: none;
+    width: 6rem;
+    background-color: grey;
+    color: white;
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getSpotDetail, updateSpot } from '../../store/spots';
+import './CreateSpotPage.css';
 
 const UpdateSpotPage = () => {
     const dispatch = useDispatch();
@@ -102,129 +103,145 @@ const UpdateSpotPage = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="create-spot-form">
-            <h1>Update your Spot</h1>
+        <form onSubmit={handleSubmit} className="create-spot-container">
+            <h2>Update your Spot</h2>
+            <div className="spot-form">
+                <section className="location-section">
+                    <h3>Where&apos;s your place located?</h3>
+                    <p>Guest will only get your exact address once they booked a reservation</p>
+                    <label>
+                        Country {''}
+                        <input
+                            className="country"
+                            type="text"
+                            value={country}
+                            onChange={e => setCountry(e.target.value)}
+                            placeholder="Country"
+                        />
+                        {errors.country && <p>{errors.country}</p>}
+                    </label>
+                    <label>
+                        Street Address {''}
+                        <input
+                            className="street-address"
+                            type="text"
+                            value={address}
+                            onChange={e => setAddress(e.target.value)}
+                            placeholder="Address"
+                        />
+                        {errors.address && <p>{errors.address}</p>}
+                    </label>
+                    <div className="city-state">
+                        <label>
+                            City {''}
+                            <input
+                                className="input-box-city"
+                                type="text"
+                                value={city}
+                                onChange={e => setCity(e.target.value)}
+                                placeholder="City"
+                            />
+                            {errors.city && <p>{errors.city}</p>}
+                        </label>
 
-            <section className="location-section">
-                <h2>Where&apos;s your place located?</h2>
-                <p>Guest will only get your exact address once they booked a reservation</p>
-                <label>
-                    Country
-                    <input
-                        type="text"
-                        value={country}
-                        onChange={e => setCountry(e.target.value)}
-                        placeholder="Country"
-                    />
-                    {errors.country && <p>{errors.country}</p>}
-                </label>
-                <label>
-                    Street Address
-                    <input
-                        type="text"
-                        value={address}
-                        onChange={e => setAddress(e.target.value)}
-                        placeholder="Address"
-                    />
-                    {errors.address && <p>{errors.address}</p>}
-                </label>
-                <label>
-                    City
-                    <input
-                        type="text"
-                        value={city}
-                        onChange={e => setCity(e.target.value)}
-                        placeholder="City"
-                    />
-                    {errors.city && <p>{errors.city}</p>}
-                </label>
-                <label>
-                    State
-                    <input
-                        type="text"
-                        value={state}
-                        onChange={e => setState(e.target.value)}
-                        placeholder="STATE"
-                    />
-                    {errors.state && <p>{errors.state}</p>}
-                </label>
-                <label>
-                    Latitude
-                    <input
-                        type="text"
-                        value={lat}
-                        onChange={e => setLat(e.target.value)}
-                        placeholder="Latitude"
-                    />
-                </label>
-                <label>
-                    Longitude
-                    <input
-                        type="text"
-                        value={lng}
-                        onChange={e => setLng(e.target.value)}
-                        placeholder="Longitude"
-                    />
-                </label>
-            </section>
+                        <label>
+                            State {''}
+                            <input
+                                className="input-box-state"
+                                type="text"
+                                value={state}
+                                onChange={e => setState(e.target.value)}
+                                placeholder="STATE"
+                            />
+                            {errors.state && <p>{errors.state}</p>}
+                        </label>
+                    </div>
+                    <div className="lat-lng">
+                        <label>
+                            Latitude {''}
+                            <input
+                                className="input-box-lat"
+                                type="text"
+                                value={lat}
+                                onChange={e => setLat(e.target.value)}
+                                placeholder="Latitude"
+                            />
+                        </label>
+                        <label>
+                            Longitude {''}
+                            <input
+                                className="input-box-lng"
+                                type="text"
+                                value={lng}
+                                onChange={e => setLng(e.target.value)}
+                                placeholder="Longitude"
+                            />
+                        </label>
+                    </div>
+                </section>
 
-            <section className="description-section">
-                <h3>Describe your place to guests</h3>
-                <p>
-                    Mention the best features of your space, any special amenities like fast wifi or
-                    parking, and what you love about the neighborhood
-                </p>
-                <input
-                    type="text"
-                    value={description}
-                    onChange={e => setDescription(e.target.value)}
-                    placeholder="Please write at least 30 characters"
-                />
-                {errors.description && <p>{errors.description}</p>}
-            </section>
+                <section className="description-section">
+                    <h3>Describe your place to guests</h3>
+                    <p>
+                        Mention the best features of your space, any special amenities like fast
+                        wifi or parking, and what you love about the neighborhood
+                    </p>
+                    <textarea
+                        size={100}
+                        type="text"
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
+                        placeholder="Please write at least 30 characters"
+                    />
+                    {errors.description && <p>{errors.description}</p>}
+                </section>
 
-            <section className="title-section">
-                <h3>Create a title for your spot</h3>
-                <p>
-                    Catch guest attention with a spot title that highlight what makes your place
-                    special
-                </p>
-                <input
-                    type="text"
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                    placeholder="Name of your spot"
-                />
-                {errors.name && <p>{errors.name}</p>}
-            </section>
+                <section className="title-section">
+                    <h3>Create a title for your spot</h3>
+                    <p>
+                        Catch guest attention with a spot title that highlight what makes your place
+                        special
+                    </p>
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                        placeholder="Name of your spot"
+                    />
+                    {errors.name && <p>{errors.name}</p>}
+                </section>
 
-            <section className="price-section">
-                <h3>Set a base price for your spot</h3>
-                <p>
-                    Competitive pricing can help your listing stand out and rank higher in search
-                    results
-                </p>
-                ${' '}
-                <input
-                    type="text"
-                    value={price}
-                    onChange={e => setPrice(e.target.value)}
-                    placeholder="Price per night (USD)"
-                />
-                {errors.price && <p>{errors.price}</p>}
-            </section>
+                <section className="price-section">
+                    <h3>Set a base price for your spot</h3>
+                    <p>
+                        Competitive pricing can help your listing stand out and rank higher in
+                        search results
+                    </p>
+                    <div className="price-input">
+                        <span>$ </span>
+                        <span>
+                            <input
+                                type="text"
+                                value={price}
+                                onChange={e => setPrice(e.target.value)}
+                                placeholder="Price per night (USD)"
+                            />
+                        </span>
+                    </div>
+                    {errors.price && <p>{errors.price}</p>}
+                </section>
 
-            <section className="iamge-section">
-                <h3>Liven up your spot with photos</h3>
-                <p>Submit a link to at least one photo to publish your spot</p>
-                <input
-                    type="text"
-                    value={previewImageUrl}
-                    onChange={e => setPreviewImage(e.target.value)}
-                    placeholder="Preview Image URL"
-                />
-                {errors.previewImageUrl && <p>{errors.previewImageUrl}</p>}
-                {/* {imageUrls.map((imageUrl, index) => (
+                <section className="iamge-section">
+                    <h3>Liven up your spot with photos</h3>
+                    <p>Submit a link to at least one photo to publish your spot</p>
+                    <input
+                        type="text"
+                        value={previewImageUrl}
+                        onChange={e => setPreviewImage(e.target.value)}
+                        placeholder="Preview Image URL"
+                    />
+                    {errors.previewImageUrl && <p>{errors.previewImageUrl}</p>}
+                    {/* {imageUrls.map((imageUrl, index) => (
                     <input
                         key={index}
                         type="text"
@@ -237,10 +254,11 @@ const UpdateSpotPage = () => {
                         placeholder="Image URL"
                     />
                 ))} */}
-            </section>
-            <button type="submit" className="create-spot-button">
-                Update Spot
-            </button>
+                </section>
+                <button type="submit" className="create-spot-button">
+                    Update Spot
+                </button>
+            </div>
         </form>
     );
 };

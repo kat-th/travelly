@@ -110,44 +110,52 @@ const CreateSpotPage = () => {
                         />
                         {errors.address && <p>{errors.address}</p>}
                     </label>
-                    <label>
-                        City {''}
-                        <input
-                            type="text"
-                            value={city}
-                            onChange={e => setCity(e.target.value)}
-                            placeholder="City"
-                        />
-                        {errors.city && <p>{errors.city}</p>}
-                    </label>
-                    <label>
-                        State {''}
-                        <input
-                            type="text"
-                            value={state}
-                            onChange={e => setState(e.target.value)}
-                            placeholder="STATE"
-                        />
-                        {errors.state && <p>{errors.state}</p>}
-                    </label>
-                    <label>
-                        Latitude {''}
-                        <input
-                            type="text"
-                            value={lat}
-                            onChange={e => setLat(e.target.value)}
-                            placeholder="Latitude"
-                        />
-                    </label>
-                    <label>
-                        Longitude {''}
-                        <input
-                            type="text"
-                            value={lng}
-                            onChange={e => setLng(e.target.value)}
-                            placeholder="Longitude"
-                        />
-                    </label>
+                    <div className="city-state">
+                        <label>
+                            City {''}
+                            <input
+                                className="input-box-city"
+                                type="text"
+                                value={city}
+                                onChange={e => setCity(e.target.value)}
+                                placeholder="City"
+                            />
+                            {errors.city && <p>{errors.city}</p>}
+                        </label>
+                        <label>
+                            State {''}
+                            <input
+                                className="input-box-state"
+                                type="text"
+                                value={state}
+                                onChange={e => setState(e.target.value)}
+                                placeholder="STATE"
+                            />
+                            {errors.state && <p>{errors.state}</p>}
+                        </label>
+                    </div>
+                    <div className="lat-lng">
+                        <label>
+                            Latitude {''}
+                            <input
+                                className="input-box-lat"
+                                type="text"
+                                value={lat}
+                                onChange={e => setLat(e.target.value)}
+                                placeholder="Latitude"
+                            />
+                        </label>
+                        <label>
+                            Longitude {''}
+                            <input
+                                className="input-box-lng"
+                                type="text"
+                                value={lng}
+                                onChange={e => setLng(e.target.value)}
+                                placeholder="Longitude"
+                            />
+                        </label>
+                    </div>
                 </section>
 
                 <section className="description-section">
@@ -187,13 +195,17 @@ const CreateSpotPage = () => {
                         Competitive pricing can help your listing stand out and rank higher in
                         search results
                     </p>
-                    ${' '}
-                    <input
-                        type="text"
-                        value={price}
-                        onChange={e => setPrice(e.target.value)}
-                        placeholder="Price per night (USD)"
-                    />
+                    <div className="price-input">
+                        <span>$ </span>
+                        <span>
+                            <input
+                                type="text"
+                                value={price}
+                                onChange={e => setPrice(e.target.value)}
+                                placeholder="Price per night (USD)"
+                            />
+                        </span>
+                    </div>
                     {errors.price && <p>{errors.price}</p>}
                 </section>
 
