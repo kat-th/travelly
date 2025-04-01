@@ -11,31 +11,33 @@
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    max-width: 90vw;
+    max-width: 25vw;
     position: relative;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     text-align: center;
 }
 
 .modal-content p {
-    color: grey;
+    color: rgb(95, 91, 91);
+    font-size: 0.9rem;
 }
 
 .modal-buttons {
     padding-top: 10px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
-    gap: 20px;
+    gap: 10px;
 }
 
 .confirm-button {
     padding: 7px 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: none;
-    background-color: #dc2624;
+    background-color: #d03634;
     color: white;
     cursor: pointer;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
     transition: background-color 0.2s ease;
 }
 
@@ -45,10 +47,11 @@
 
 .cancel-button {
     padding: 7px 20px;
-    border-radius: 10px;
-    border: 2px solid lightgrey;
+    border-radius: 5px;
+    border: 2px solid rgb(155, 151, 151);
     background-color: white;
     cursor: pointer;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
     transition: background-color 0.2s ease;
 }
 

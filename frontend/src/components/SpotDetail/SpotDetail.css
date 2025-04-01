@@ -1,6 +1,6 @@
 .spot-container {
-    margin: 10px 200px;
-    padding: 5px 40px 50px;
+    margin: 10px auto;
+    padding: 5px 10vw 50px;
     flex-direction: column;
     gap: 20px;
 }
