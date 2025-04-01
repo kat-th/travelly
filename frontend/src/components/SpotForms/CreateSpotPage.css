@@ -1,9 +1,4 @@
 .create-spot-container {
-    /* margin: auto 100px;
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px; */
     max-width: 600px;
     margin: 0 auto;
 }
@@ -15,7 +10,7 @@
 }
 
 .spot-form label {
-    font-weight: bold;
+    font-size: 15px;
 }
 
 .spot-form section {
@@ -26,7 +21,7 @@
     text-align: center;
 }
 
-.city-state,
+.city-state-label,
 .lat-lng {
     display: flex;
     width: 100%;
@@ -36,7 +31,6 @@
 .input-box-city {
     flex: 2;
     min-width: 290px;
-    flex: 1;
 }
 
 .input-box-lat {
@@ -47,6 +41,19 @@
 .input-box-lng {
     flex: 1;
     min-width: 185px;
+}
+
+.label-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5px;
+    gap: 3px;
+}
+
+.error-message {
+    color: red;
+    /* font-size: 0.9 rem; */
 }
 
 .price-input {
@@ -60,8 +67,8 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 14px;
-    margin-top: 6px;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
     width: 100%;
 }
 
@@ -72,6 +79,7 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 14px;
+    margin-bottom: 5px;
 }
 
 .create-spot-button {

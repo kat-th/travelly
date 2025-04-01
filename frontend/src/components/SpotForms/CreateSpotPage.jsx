@@ -93,28 +93,41 @@ const CreateSpotPage = () => {
                     <h3>Where&apos;s your place located?</h3>
                     <p>Guest will only get your exact address once they booked a reservation</p>
                     <label>
-                        Country {''}
+                        <div className="label-row">
+                            <span>Country </span>{' '}
+                            {errors.country && (
+                                <span className="error-message">{errors.country}</span>
+                            )}
+                        </div>
                         <input
                             type="text"
                             value={country}
                             onChange={e => setCountry(e.target.value)}
                             placeholder="Country"
                         />
-                        {errors.country && <p>{errors.country}</p>}
                     </label>
                     <label>
-                        Street Address {''}
+                        <div className="label-row">
+                            <span>Street Address </span>
+                            {errors.address && (
+                                <span className="error-message">{errors.address}</span>
+                            )}
+                        </div>
                         <input
                             type="text"
                             value={address}
                             onChange={e => setAddress(e.target.value)}
                             placeholder="Address"
                         />
-                        {errors.address && <p>{errors.address}</p>}
                     </label>
-                    <div className="city-state">
+                    <div className="city-state-label">
                         <label>
-                            City {''}
+                            <div className="label-row">
+                                <span>City </span>
+                                {errors.city && (
+                                    <span className="error-message">{errors.city}</span>
+                                )}
+                            </div>
                             <input
                                 className="input-box-city"
                                 type="text"
@@ -122,10 +135,14 @@ const CreateSpotPage = () => {
                                 onChange={e => setCity(e.target.value)}
                                 placeholder="City"
                             />
-                            {errors.city && <p>{errors.city}</p>}
                         </label>
                         <label>
-                            State {''}
+                            <div className="label-row">
+                                <span>State </span>
+                                {errors.state && (
+                                    <span className="error-message">{errors.state}</span>
+                                )}
+                            </div>
                             <input
                                 className="input-box-state"
                                 type="text"
@@ -133,12 +150,11 @@ const CreateSpotPage = () => {
                                 onChange={e => setState(e.target.value)}
                                 placeholder="STATE"
                             />
-                            {errors.state && <p>{errors.state}</p>}
                         </label>
                     </div>
                     <div className="lat-lng">
                         <label>
-                            Latitude {''}
+                            <span className="label-row">Latitude {''}</span>
                             <input
                                 className="input-box-lat"
                                 type="text"
@@ -148,7 +164,7 @@ const CreateSpotPage = () => {
                             />
                         </label>
                         <label>
-                            Longitude {''}
+                            <span className="label-row">Longitude {''}</span>
                             <input
                                 className="input-box-lng"
                                 type="text"
@@ -173,7 +189,9 @@ const CreateSpotPage = () => {
                         onChange={e => setDescription(e.target.value)}
                         placeholder="Please write at least 30 characters"
                     />
-                    {errors.description && <p>{errors.description}</p>}
+                    {errors.description && (
+                        <span className="error-message">{errors.description}</span>
+                    )}
                 </section>
 
                 <section className="title-section">
@@ -188,7 +206,7 @@ const CreateSpotPage = () => {
                         onChange={e => setName(e.target.value)}
                         placeholder="Name of your spot"
                     />
-                    {errors.name && <p>{errors.name}</p>}
+                    {errors.name && <span className="error-message">{errors.name}</span>}
                 </section>
 
                 <section className="price-section">
@@ -208,7 +226,7 @@ const CreateSpotPage = () => {
                             />
                         </span>
                     </div>
-                    {errors.price && <p>{errors.price}</p>}
+                    {errors.price && <span className="error-message">{errors.price}</span>}
                 </section>
 
                 <section className="iamge-section">
@@ -220,7 +238,9 @@ const CreateSpotPage = () => {
                         onChange={e => setPreviewImage(e.target.value)}
                         placeholder="Preview Image URL"
                     />
-                    {errors.previewImage && <p>{errors.previewImage}</p>}
+                    {errors.previewImage && (
+                        <span className="error-message">{errors.previewImage}</span>
+                    )}
                     {[1, 2, 3, 4].map(index => (
                         <input
                             key={index}

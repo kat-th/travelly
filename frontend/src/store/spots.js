@@ -89,11 +89,10 @@ export const createSpot = spotData => async dispatch => {
             return data;
         } else {
             let error = await response.json();
-            console.error(error, 'API Error:');
             return error;
         }
     } catch (error) {
-        console.error(error, 'Unexpected Error:');
+        console.error(error);
     }
 };
 

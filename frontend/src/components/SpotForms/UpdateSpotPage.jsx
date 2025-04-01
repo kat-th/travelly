@@ -118,7 +118,7 @@ const UpdateSpotPage = () => {
                             onChange={e => setCountry(e.target.value)}
                             placeholder="Country"
                         />
-                        {errors.country && <p>{errors.country}</p>}
+                        {errors.country && <p className="error-message">{errors.country}</p>}
                     </label>
                     <label>
                         Street Address {''}
@@ -129,7 +129,7 @@ const UpdateSpotPage = () => {
                             onChange={e => setAddress(e.target.value)}
                             placeholder="Address"
                         />
-                        {errors.address && <p>{errors.address}</p>}
+                        {errors.address && <p className="error-message">{errors.address}</p>}
                     </label>
                     <div className="city-state">
                         <label>
@@ -141,7 +141,7 @@ const UpdateSpotPage = () => {
                                 onChange={e => setCity(e.target.value)}
                                 placeholder="City"
                             />
-                            {errors.city && <p>{errors.city}</p>}
+                            {errors.city && <p className="error-message">{errors.city}</p>}
                         </label>
 
                         <label>
@@ -153,7 +153,7 @@ const UpdateSpotPage = () => {
                                 onChange={e => setState(e.target.value)}
                                 placeholder="STATE"
                             />
-                            {errors.state && <p>{errors.state}</p>}
+                            {errors.state && <p className="error-message">{errors.state}</p>}
                         </label>
                     </div>
                     <div className="lat-lng">
@@ -193,7 +193,7 @@ const UpdateSpotPage = () => {
                         onChange={e => setDescription(e.target.value)}
                         placeholder="Please write at least 30 characters"
                     />
-                    {errors.description && <p>{errors.description}</p>}
+                    {errors.description && <p className="error-message">{errors.description}</p>}
                 </section>
 
                 <section className="title-section">
@@ -208,7 +208,7 @@ const UpdateSpotPage = () => {
                         onChange={e => setName(e.target.value)}
                         placeholder="Name of your spot"
                     />
-                    {errors.name && <p>{errors.name}</p>}
+                    {errors.name && <p className="error-message">{errors.name}</p>}
                 </section>
 
                 <section className="price-section">
@@ -228,7 +228,7 @@ const UpdateSpotPage = () => {
                             />
                         </span>
                     </div>
-                    {errors.price && <p>{errors.price}</p>}
+                    {errors.price && <p className="error-message">{errors.price}</p>}
                 </section>
 
                 <section className="iamge-section">
@@ -240,7 +240,9 @@ const UpdateSpotPage = () => {
                         onChange={e => setPreviewImage(e.target.value)}
                         placeholder="Preview Image URL"
                     />
-                    {errors.previewImageUrl && <p>{errors.previewImageUrl}</p>}
+                    {errors.previewImageUrl && (
+                        <p className="error-message">{errors.previewImageUrl}</p>
+                    )}
                     {/* {imageUrls.map((imageUrl, index) => (
                     <input
                         key={index}
