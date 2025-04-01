@@ -74,7 +74,7 @@ const CreateSpotPage = () => {
             imageUrls,
         };
 
-        console.log(newSpot, 'THIS IS THE NEW SPOT DATA');
+        console.log(spotData, 'THIS IS THE NEW SPOT DATA');
 
         const newSpot = await dispatch(createSpot(spotData));
 
