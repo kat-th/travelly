@@ -91,7 +91,7 @@ const SpotDetail = () => {
     const previewImage = spot.SpotImages?.find(img => img.preview === true);
     const otherImages = spot.SpotImages?.filter(img => img.preview !== true);
 
-    // console.log(spot.Owner.firstName, 'THIS IS THE SPOT OWNER');
+    console.log(otherImages, 'THIS IS THE IMAGES');
 
     return (
         <div className="spot-container">
