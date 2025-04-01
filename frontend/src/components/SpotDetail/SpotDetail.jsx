@@ -91,6 +91,7 @@ const SpotDetail = () => {
     const previewImage = spot.SpotImages?.find(img => img.preview === true);
     const otherImages = spot.SpotImages?.filter(img => img.preview !== true);
 
+    console.log(spot, 'THIS IS THE SPOTTTTTT');
     console.log(otherImages, 'THIS IS THE IMAGES');
 
     return (
