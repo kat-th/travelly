@@ -74,7 +74,7 @@ const CreateSpotPage = () => {
             imageUrls,
         };
 
-        console.log(spotData, 'THIS IS THE NEW SPOT DATA');
+        // console.log(spotData, 'THIS IS THE NEW SPOT DATA');
 
         const newSpot = await dispatch(createSpot(spotData));
 
@@ -241,7 +241,7 @@ const CreateSpotPage = () => {
                     {errors.previewImage && (
                         <span className="error-message">{errors.previewImage}</span>
                     )}
-                    {[1, 2, 3, 4].map(index => (
+                    {[0, 1, 2, 3].map(index => (
                         <input
                             key={index}
                             type="text"
