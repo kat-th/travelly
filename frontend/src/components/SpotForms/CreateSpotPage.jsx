@@ -19,7 +19,7 @@ const CreateSpotPage = () => {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [previewImage, setPreviewImage] = useState('');
-    const [imageUrls, setImageUrls] = useState(['', '']);
+    const [imageUrls, setImageUrls] = useState(['', '', '', '']);
     const [errors, setErrors] = useState({});
 
     // useEffect(() => {
@@ -221,7 +221,7 @@ const CreateSpotPage = () => {
                         placeholder="Preview Image URL"
                     />
                     {errors.previewImage && <p>{errors.previewImage}</p>}
-                    {[1, 2].map(index => (
+                    {[1, 2, 3, 4].map(index => (
                         <input
                             key={index}
                             type="text"
