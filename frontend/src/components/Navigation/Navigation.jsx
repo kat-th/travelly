@@ -10,7 +10,7 @@ function Navigation({ isLoaded }) {
         <nav className="nav-bar">
             <div className="nav-left">
                 <NavLink to="/">
-                    <img src="/airbnb.png" className="home-logo" size={10} />
+                    <img src="/travelly.png" className="home-logo" size={10} />
                 </NavLink>
             </div>
             {isLoaded && (

@@ -82,6 +82,7 @@ body {
     border: none;
     background-color: #43403d;
     color: white;
+    cursor: pointer;
 }
 
 .delete-button {
@@ -90,4 +91,5 @@ body {
     border: none;
     background-color: #ec6060;
     color: white;
+    cursor: pointer;
 }
