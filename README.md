@@ -41,9 +41,21 @@
 <img width="1278" alt="Screenshot 2025-05-01 at 7 13 49 PM" src="https://github.com/user-attachments/assets/3cfd9c20-4b26-4cad-ba80-0ea6d4b03b87" />
 
 -   Spot detail page
-    <img width="1536" alt="Screenshot 2025-05-01 at 7 10 22 PM" src="https://github.com/user-attachments/assets/7509ab48-e23c-4f18-86d4-6de4095bbde9" />
+
+<img width="1536" alt="Screenshot 2025-05-01 at 7 10 22 PM" src="https://github.com/user-attachments/assets/7509ab48-e23c-4f18-86d4-6de4095bbde9" />
+
+-   Create new spot form
+
+<img width="1307" alt="Screenshot 2025-05-01 at 7 10 57 PM" src="https://github.com/user-attachments/assets/55cdbc26-101b-4f8a-a92c-3165eb407fdc" />
+
+-   Update spot form
 
 <img width="1348" alt="Screenshot 2025-05-01 at 7 11 12 PM" src="https://github.com/user-attachments/assets/cca2eaca-762a-4946-b8c2-897e012e51cf" />
+
+-   Manage (Delete or Update) your spot
+
 <img width="1301" alt="Screenshot 2025-05-01 at 7 11 38 PM" src="https://github.com/user-attachments/assets/380659f4-4c8d-430c-8235-571bd18ff714" />
+
+-   Post a review
+
 <img width="1151" alt="Screenshot 2025-05-01 at 7 12 20 PM" src="https://github.com/user-attachments/assets/6cc8e8b5-cd7d-4557-b4d1-9e7f55663c12" />
-<img width="1278" alt="Screenshot 2025-05-01 at 7 13 49 PM" src="https://github.com/user-attachments/assets/385220c6-64c0-4bf9-9ca0-e66c79b4c5b9" />
