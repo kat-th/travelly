@@ -9,9 +9,9 @@
 
 ## ✨ Features
 
--   ✅ Feature 1 — Describe briefly
--   ✅ Feature 2 — Example: user authentication, real-time chat, etc.
--   ✅ Feature 3 — Responsive UI / RESTful API / etc.
+-   User Authentication
+-   Create / Read / Update / Delete SPOTS for logged in user
+-   Create / Read / Delete REVIEWS for logged in user
 
 ## 🛠️ Tech Stack
 
@@ -36,4 +36,14 @@
 
 ## 🖼 Scrennshots
 
+-   Home Page
+
 <img width="1278" alt="Screenshot 2025-05-01 at 7 13 49 PM" src="https://github.com/user-attachments/assets/3cfd9c20-4b26-4cad-ba80-0ea6d4b03b87" />
+
+-   Spot detail page
+    <img width="1536" alt="Screenshot 2025-05-01 at 7 10 22 PM" src="https://github.com/user-attachments/assets/7509ab48-e23c-4f18-86d4-6de4095bbde9" />
+
+<img width="1348" alt="Screenshot 2025-05-01 at 7 11 12 PM" src="https://github.com/user-attachments/assets/cca2eaca-762a-4946-b8c2-897e012e51cf" />
+<img width="1301" alt="Screenshot 2025-05-01 at 7 11 38 PM" src="https://github.com/user-attachments/assets/380659f4-4c8d-430c-8235-571bd18ff714" />
+<img width="1151" alt="Screenshot 2025-05-01 at 7 12 20 PM" src="https://github.com/user-attachments/assets/6cc8e8b5-cd7d-4557-b4d1-9e7f55663c12" />
+<img width="1278" alt="Screenshot 2025-05-01 at 7 13 49 PM" src="https://github.com/user-attachments/assets/385220c6-64c0-4bf9-9ca0-e66c79b4c5b9" />
