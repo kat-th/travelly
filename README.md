@@ -1,6 +1,6 @@
 # Travelly
 
-**[Travelly]**(https://travelly-homes.onrender.com/) is a full-stack rental platform (inspired by Airbnb) built with JavaScript, Express, Sequelize, React, Redux, and PostgreSQL. This application allows users to browse, create, and manage vacation rentals with key features including user authentication, listing management, review management, booking system, with interactive and responsive UI.
+[**Travelly**](https://travelly-homes.onrender.com/) is a full-stack rental platform (inspired by Airbnb) built with JavaScript, Express, Sequelize, React, Redux, and PostgreSQL. This application allows users to browse, create, and manage vacation rentals with key features including user authentication, listing management, review management, booking system, with interactive and responsive UI.
 
 ## Project Wiki
 
