@@ -1,19 +1,18 @@
 # Travelly
 
-## 📘 Project Wiki
+## Project Wiki
 
--   [MVP Feature List](link)
--   [Database Schema](link)
+-   [Database Schema](https://github.com/kat-th/travelly/wiki/Database-Schema)
 -   [Backend Routes](link)
 -   [FrontEnd Routes](link)
 
-## ✨ Features
+## Features
 
 -   User Authentication
 -   Create / Read / Update / Delete SPOTS for logged in user
 -   Create / Read / Delete REVIEWS for logged in user
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 **Frontend:**
 
@@ -34,7 +33,7 @@
 
 ![Render](https://img.shields.io/badge/Render-000000?style=for-the-badge&logo=render&logoColor=white)
 
-## 🖼 Scrennshots
+## Scrennshots
 
 -   Home Page
 
