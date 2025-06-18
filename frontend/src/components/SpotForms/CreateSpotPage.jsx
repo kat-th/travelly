@@ -22,23 +22,26 @@ const CreateSpotPage = () => {
     const [imageUrls, setImageUrls] = useState(['', '', '', '']);
     const [errors, setErrors] = useState({});
 
-    // useEffect(() => {
-    //     return () => {
-    //         // Reset all state variables to empty strings
-    //         setCountry('');
-    //         setAddress('');
-    //         setCity('');
-    //         setState('');
-    //         setDescription('');
-    //         setLat('');
-    //         setLng('');
-    //         setName('');
-    //         setPrice('');
-    //         setPreviewImage('');
-    //         setImageUrls(['', '', '', '', '']);
-    //         setErrors({});
-    //     };
-    // }, []);
+    const autoFill = () => {
+        setName('Serenity Woods');
+        setCountry('United States');
+        setAddress('New Hartford, Connecticut');
+        setState('Connecticut');
+        setCity('New Hartford');
+        setLat('37.76343');
+        setLng('-122.47567');
+        setDescription(
+            'Stunning, exceptionally private log cabin located in the center of 62 acres of wooded land. The half mile driveway leads to our cabin that is loaded with amenities, and everything we could think of for peace and quiet, laughter, and making memories. The owner stays here regularly and hosts dinners, classes, masterminds, and more.  A new hot tub is being installed in May!',
+        );
+        setPrice(150);
+        setPreviewImage('https://travelly-images.s3.us-east-2.amazonaws.com/spot4-01.png');
+        setImageUrls([
+            'https://travelly-images.s3.us-east-2.amazonaws.com/spot4-02.png',
+            'https://travelly-images.s3.us-east-2.amazonaws.com/spot4-03.png',
+            'https://travelly-images.s3.us-east-2.amazonaws.com/spot4-04.png',
+            'https://travelly-images.s3.us-east-2.amazonaws.com/spot4-05.png',
+        ]);
+    };
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -90,6 +93,9 @@ const CreateSpotPage = () => {
             <h2>Create a new Spot</h2>
             <div className="spot-form">
                 <section className="location-section">
+                    <div className="autofill-button" onClick={autoFill}>
+                        AutoFill
+                    </div>
                     <h3>Where&apos;s your place located?</h3>
                     <p>Guest will only get your exact address once they booked a reservation</p>
                     <label>

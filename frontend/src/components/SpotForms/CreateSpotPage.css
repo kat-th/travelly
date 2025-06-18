@@ -3,6 +3,12 @@
     margin: 0 auto;
 }
 
+.autofill-button {
+    color: rgb(106, 106, 106);
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: small;
+}
 .spot-form {
     display: flex;
     flex-direction: column;
