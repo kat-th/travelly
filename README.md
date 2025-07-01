@@ -6,7 +6,7 @@
 
 -   [Database Schema](https://github.com/kat-th/travelly/wiki/Database-Schema)
 -   [Backend Routes](https://github.com/kat-th/travelly/wiki/Backend-Routes)
--   [FrontEnd Routes](link)
+-   [FrontEnd Routes](https://github.com/kat-th/travelly/wiki/Frontend-Routes)
 
 ## Features
 
